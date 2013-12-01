@@ -1,0 +1,32 @@
+﻿@model OzonShop.Models.ParametersModel
+@{
+    ViewBag.Title = @GlobalRes.Resource.Create;
+}
+
+
+<div style="border: 4px solid blue">
+    <ul class="breadcrumb">
+        <li>@Html.ActionLink(@GlobalRes.Resource.Products, "Product")<span class="divider">/</span></li>
+        <li>@Html.ActionLink(@GlobalRes.Resource.Edit, "EditProduct", new { id = Model.ProductId })<span class="divider">/</span></li>
+        <li class="active">@GlobalRes.Resource.Create @GlobalRes.Resource.Parameter</li>
+    </ul>
+
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            @Html.HiddenFor(model => model.ProductId, new { Value = Model.ProductId })
+            <div class="form-group">
+                <b>@GlobalRes.Resource.Name</b><br />
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="form-group">
+                <b>@GlobalRes.Resource.Value</b><br />
+                @Html.EditorFor(model => model.Value)
+                @Html.ValidationMessageFor(model => model.Value)
+            </div>       
+            <p><input type="submit" class="btn" value="@GlobalRes.Resource.Create" /></p>
+        </fieldset>
+    }
+</div>

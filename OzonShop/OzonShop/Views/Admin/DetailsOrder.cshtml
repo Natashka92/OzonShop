@@ -1,0 +1,68 @@
+﻿@model Shop.DataBase.Order
+@{
+    ViewBag.Title = @GlobalRes.Resource.Details;
+}
+
+<ul class="breadcrumb">
+        <li>@Html.ActionLink(@GlobalRes.Resource.Orders, "Order")<span class="divider">/</span></li>
+        <li class="active">@GlobalRes.Resource.Details </li>
+</ul>
+
+<fieldset>   
+    <div class="form-group">
+        <label>
+            <b>@GlobalRes.Resource.UserName - </b> 
+            @ViewBag.User (@Html.DisplayFor(model => model.UserId))
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            <b>@GlobalRes.Resource.Adress - </b>    
+            @ViewBag.Adress
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            <b>@GlobalRes.Resource.OrderData - </b>   
+            @Html.DisplayFor(model => model.OrderData)
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            <b>@GlobalRes.Resource.TotalPrice - </b>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label>
+            <b>@GlobalRes.Resource.Currency - </b>
+            @ViewBag.Currency
+        </label>
+    </div>
+    <br />
+    <table class="table table-striped table-hover">
+        <tr>        
+            <th>
+                @GlobalRes.Resource.Product
+            </th>
+            <th>
+                @GlobalRes.Resource.Quantity
+            </th>
+        </tr>
+        @foreach (OrderProduct item in ViewBag.Products)
+        {
+            <tr class="success">            
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+            </tr>
+        }
+    </table>
+</fieldset>

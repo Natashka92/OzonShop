@@ -1,0 +1,11 @@
+﻿<ul class="btn-group">  
+    <li class="btn">@Html.ActionLink(GlobalRes.Resource.Home, "Index", "Home")</li>    
+    @if (Request.IsAuthenticated)
+    {
+    <li class="btn">@Html.ActionLink(GlobalRes.Resource.PersonalPage, "PersonalPage", "Personal")</li>
+    if(User.IsInRole("admin"))
+        { 
+        <li class="btn">@Html.ActionLink(GlobalRes.Resource.AdminPage, "Product", "Admin")</li>
+        }
+    }
+</ul>

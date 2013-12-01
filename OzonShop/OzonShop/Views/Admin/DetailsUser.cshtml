@@ -1,0 +1,57 @@
+﻿@model Shop.DataBase.User
+@{
+    ViewBag.Title = @GlobalRes.Resource.Details;
+}
+
+<div style="border: 4px solid blue">
+    <ul class="breadcrumb">
+            <li>@Html.ActionLink(@GlobalRes.Resource.Users, "ViewUser")<span class="divider">/</span></li>
+            <li class="active">@GlobalRes.Resource.Details </li>
+    </ul>
+
+    <fieldset>
+        <div class="form-group">
+            <label>
+                <b>@GlobalRes.Resource.UserName - </b>    
+                @Html.DisplayFor(model => model.UserName)
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>
+                <b>@GlobalRes.Resource.Login - </b>
+                @Html.DisplayFor(model => model.Login)
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>
+                <b>@GlobalRes.Resource.Email - </b>
+                @Html.DisplayFor(model => model.Email)
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>
+                <b>@GlobalRes.Resource.Distribution - </b>
+                @Html.DisplayFor(model => model.Distribution)
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label>
+                <b>@GlobalRes.Resource.Phone - </b>
+                @Html.DisplayFor(model => model.Phone)
+            </label>
+        </div>
+        <br />
+        <h4>@GlobalRes.Resource.Adresses:</h4>
+
+        @foreach (var adress in ViewBag.Adress)
+        {  
+            <div class="form-group">
+                @adress.Country  @adress.Town  @adress.Street
+            </div>
+        } 
+    </fieldset>
+</div>

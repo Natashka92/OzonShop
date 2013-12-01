@@ -1,0 +1,105 @@
+﻿@using OzonShop.Models;
+@model Shop.DataBase.Product
+@{
+    ViewBag.Title = @GlobalRes.Resource.Edit;
+}
+
+<div style="border: 4px solid blue">
+    <ul class="breadcrumb">
+            <li>@Html.ActionLink(@GlobalRes.Resource.Products, "Product")<span class="divider">/</span></li>
+            <li class="active">@GlobalRes.Resource.Edit </li>
+    </ul>
+
+    @using (Html.BeginForm(new { @class = "form-horizontal" }))
+    {
+        @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.ProductId)
+        <fieldset>
+            <div class="form-group">
+                <b>Url </b><br />
+                @Html.EditorFor(model => model.Url, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.Url)
+            </div>
+
+            <div class="form-group">
+                <b>@GlobalRes.Resource.Name</b><br />
+                @Html.EditorFor(model => model.Name, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            <div class="form-group">
+                <b>@GlobalRes.Resource.Price</b><br />
+                @Html.EditorFor(model => model.Price, new { @class = "input-xxlarge", @width = "500" })
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+
+            <div class="form-group">
+                <b>@GlobalRes.Resource.Description</b><br />
+                @Html.TextAreaFor(model => model.Description, new { @class = "input-xxlarge", @rows = "10", @maxlength = "40000" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+
+            <div class="form-group">
+                <b>@GlobalRes.Resource.Barcode</b><br />
+                @Html.EditorFor(model => model.Barcode, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.Barcode)
+            </div>
+
+            <div class="form-group">
+                <b>@GlobalRes.Resource.Discount</b><br />
+                @Html.EditorFor(model => model.Discount, new { @class = "input-xxlarge " })
+                @Html.ValidationMessageFor(model => model.Discount)
+            </div>
+
+            <div class="form-group">
+                <b>@GlobalRes.Resource.Category</b><br />
+                @Html.DropDownListFor(model => model.CategoryId, new SelectList(ViewBag.Categories, "CategoryId", "Name", String.Empty))
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+            <h3>@GlobalRes.Resource.Picture: </h3>
+            <div class="btn btn-success">@Html.ActionLink(@GlobalRes.Resource.Add + " " + @GlobalRes.Resource.Picture, "CreatePicture", new { idProduct = Model.ProductId })</div>
+            <table class="table table-striped table-hover">		
+               <tr>
+                   <th>Url</th>
+                   <th></th>
+               </tr>       
+                    @foreach (var item in ViewBag.Pictures)
+                    {
+                        <tr class="success">
+                            <td>@item.PictureUrl</td>
+                            <td>@Html.ActionLink(@GlobalRes.Resource.Delete, "DeletePicture", new { pictureId = item.PictureId, productId = Model.ProductId }, new { @class = "btn", onclick = "return confirm('Are You Sure?')" })</td>
+                        </tr>                          
+                    }   	
+            </table>  
+            <br />
+            <h3>@GlobalRes.Resource.Parameters:</h3>
+            <div class="btn btn-success">@Html.ActionLink(@GlobalRes.Resource.Add + " " + @GlobalRes.Resource.Parameter, "CreateParameter", new { productId = Model.ProductId })</div>
+            <table class="table table-striped table-hover">
+                <tr>        
+                    <th>
+                        @GlobalRes.Resource.Name
+                    </th>
+                    <th>
+                        @GlobalRes.Resource.Value
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (ParametersModel item in ViewBag.Param)
+                {
+                    <tr class="success">            
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Value)
+                        </td>   
+                        <td>
+                            @Html.ActionLink(@GlobalRes.Resource.Delete, "DeleteParameter", new { idName = item.NameId, idValue = item.ValueId, productId = Model.ProductId }, new { @class = "btn", onclick = "return confirm('Are You Sure?')" })
+                        </td>                            
+                    </tr>            
+                }
+            </table>
+            <p><input type="submit" class="btn" value="@GlobalRes.Resource.Edit" /></p>
+        </fieldset>
+    }
+</div>

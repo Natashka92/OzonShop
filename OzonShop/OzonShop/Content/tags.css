@@ -1,0 +1,59 @@
+﻿/* ---- tags size ----*/
+a.tag0, a.tag1, a.tag2, a.tag3, a.tag4, a.tag5, a.tag6, a.tag7, a.tag8, a.tag9
+{
+	font-family: Tahoma, Arial;
+	text-decoration: none;
+	padding: 5px;
+}
+a.tag0
+{
+	font-size: 10px;
+	color: #999;
+}
+a.tag1
+{
+	font-size: 12px;
+	color: #333;
+}
+a.tag2
+{
+	font-size: 14px;
+	color: #3333FF;
+}
+a.tag3
+{
+	font-size: 16px;
+	color: #009933;
+}
+a.tag4
+{
+	font-size: 18px;
+	color: #99CC00;
+}
+a.tag5
+{
+	font-size: 20px;
+	color: #FF9900;
+}
+a.tag6
+{
+	font-size: 22px;
+	color: Maroon;
+}
+a.tag7
+{
+	font-size: 24px;
+	color: Maroon;
+	font-weight: bold;
+}
+a.tag8
+{
+	font-size: 26px;
+	color: Red;
+}
+a.tag9
+{
+	font-size: 32px;
+	color: Red;
+}
+/* -------------------*/

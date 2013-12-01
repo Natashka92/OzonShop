@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="D:\epam\Shop\Shop\bin\Debug\Shop.exe" total="5" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-11-08" time="22:11:42">
+  <environment nunit-version="2.6.2.12296" clr-version="4.0.30319.225" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.6.2\bin" machine-name="NATALI-PC" user="natali" user-domain="natali-PC" />
+  <culture-info current-culture="ru-RU" current-uiculture="ru-RU" />
+  <test-suite type="Assembly" name="D:\epam\Shop\Shop\bin\Debug\Shop.exe" executed="True" result="Success" success="True" time="21.376" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="Shop" executed="True" result="Success" success="True" time="21.366" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Test" executed="True" result="Success" success="True" time="21.365" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="BaseDBTest" executed="True" result="Success" success="True" time="21.364" asserts="0">
+                <results>
+                  <test-case name="Shop.Test.BaseDBTest.AddCategory" executed="True" result="Success" success="True" time="11.041" asserts="4" />
+                  <test-case name="Shop.Test.BaseDBTest.AddCurrency" executed="True" result="Success" success="True" time="2.549" asserts="1" />
+                  <test-case name="Shop.Test.BaseDBTest.AddOrder" executed="True" result="Success" success="True" time="3.256" asserts="19" />
+                  <test-case name="Shop.Test.BaseDBTest.AddProduct" executed="True" result="Success" success="True" time="2.790" asserts="11" />
+                  <test-case name="Shop.Test.BaseDBTest.AddUser" executed="True" result="Success" success="True" time="1.600" asserts="4" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

@@ -1,0 +1,60 @@
+﻿@model OzonShop.Models.SearchViewModel
+@{
+    ViewBag.Title = GlobalRes.Resource.Search;
+}
+@Scripts.Render("~/scripts/search.js")
+
+<div>
+    <div>@Html.Action("Category", "Home")</div>        
+    <div style="width: 870px; position: absolute; top:102px; left:450px; border: 4px solid blue; background-color: White; text-align:right">
+    @using (Html.BeginForm("Search", "Search", FormMethod.Post, new { id = "SearchForm" }))
+    {
+        <h4 style="text-align:center">@GlobalRes.Resource.ResultSearch:  @Model.SearchKeyword</h4>
+        <br />
+        <div class="navbar-form" style="color:Blue"> 
+            @Html.Hidden("CurrentPage", @Model.CurrentPage)
+            @Html.Hidden("SearchKeyword", @Model.SearchKeyword)
+            @Html.Hidden("idTag", @Model.idTag)
+            @Html.Hidden("idCategory", @Model.idCategory)
+            <span class="CurrentPage">@GlobalRes.Resource.Page @Model.CurrentPage @GlobalRes.Resource.Of @Model.MaxPages</span>
+            @if (Model.CurrentPage > 0)
+            {
+                <img id="Previous" src="@Url.Content("~/Images/Button Previous.png")" width="20" height="20" class="PadingButton" alt="Previos"/>
+            }
+            @if (Model.MaxPages != Model.CurrentPage)
+            {
+                <img id="Next" src="@Url.Content("~/Images/Button Next.png")" width="20" height="20" class="PadingButton" alt="Next"/>
+            }
+            @Html.DropDownListFor( m=> m.PagingSize, new SelectList(Model.PagingSizeList))          
+            <span>@GlobalRes.Resource.SortBy: </span>
+            @Html.DropDownListFor(m=> m.SortByField, new SelectList( Model.SortByFieldList))       
+        </div><br />
+        if (Model != null && Model.SearchResult.Count() > 0)
+        {
+            foreach (var item in Model.SearchResult)
+            {       
+                <div class="span4" style="border: 2px solid green">
+                    <img alt="@item.Name", width="250" height="70", src="@item.Picture" /><br />                
+                    @Html.ActionLink(@item.Name, "ViewProduct", new { productId = item.ProductId }) <br />                   
+                    <p>
+                    @GlobalRes.Resource.Price: @item.Price.ToString()                
+                    @if (@item.IsStore)
+                    {
+                        <b><big style="background-color: Green; border: 1px solid green; text-align:right">@GlobalRes.Resource.IsStore </big></b>
+                    }
+                    else
+                    {
+                        <b><big style="background-color: Red; border: 1px solid red; text-align:right">@GlobalRes.Resource.NoStore </big></b>
+                    }
+                    </p>               
+                </div>
+            }
+        }
+        else
+        {
+            <p>@GlobalRes.Resource.NotFound</p> 
+        }
+    }
+    </div>    
+</div>
+

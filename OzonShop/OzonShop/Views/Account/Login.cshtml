@@ -1,0 +1,34 @@
+﻿@model OzonShop.Models.LoginModel
+@{
+    ViewBag.Title = @GlobalRes.Resource.LogInForm;
+}
+
+<div style="border: 4px solid blue">  
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) 
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)    
+        <legend>@GlobalRes.Resource.LogInForm</legend>        
+        <div class="form-group">
+            @Html.LabelFor(m => m.Login)
+            @Html.TextBoxFor(m => m.Login, new { @class = "input-xlarge" })
+            @Html.ValidationMessageFor(m => m.Login)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "input-xlarge" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <div class="form-group">
+            <label>
+                @Html.CheckBoxFor(m => m.RememberMe)            
+                @GlobalRes.Resource.RememberMe
+            </label>
+        </div>        
+        <input type="submit" value=@GlobalRes.Resource.Login class="btn"/>    
+        @Html.ActionLink(@GlobalRes.Resource.ToRegistr + ", ", "Register") @GlobalRes.Resource.IfNotRegistr        
+    }
+</div>
+
+
+

@@ -1,0 +1,11 @@
+﻿@model List<Shop.DataBase.Category>
+@{
+    ViewBag.Title = @GlobalRes.Resource.Home;
+}
+
+<div>   
+    <div>@Html.Action("Category", "Home")</div>   
+    <div style="width: 870px; position: absolute; top:102px; left:450px; border: 4px solid blue; background-color: White">          
+        @Html.Action("Cloud", "Home")
+    </div>
+</div>

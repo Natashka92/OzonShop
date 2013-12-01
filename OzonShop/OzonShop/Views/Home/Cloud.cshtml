@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Shop.DataBase.TagCloud>
+@{    
+}
+<link href="@Url.Content("/content/tags.css")" rel = "Stylesheet" type="text/css" />
+ 
+<h1 style="text-align:center; background-color: White">@GlobalRes.Resource.Weclome</h1>   
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <span style="margin: 2px; padding: 2px; line-height: 2em; background-color: #fff;">
+                    @Html.ActionLink(
+                    string.Concat(item.Name, "(", @item.Total, ")"),
+                    "FullSearch",
+                    "Search",                
+                    new {idTag = item.Id, idCategory = 0 },                              
+                    new { @class = item.CssClass })   
+            </span>      
+        } 
+
+        <div id="SearchResultsByTags"></div> 
+    }    

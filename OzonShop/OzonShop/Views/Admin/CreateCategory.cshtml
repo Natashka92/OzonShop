@@ -1,0 +1,33 @@
+﻿@model OzonShop.Models.CategoryModel
+@{
+    ViewBag.Title = @GlobalRes.Resource.Create;
+}
+
+<div style="border: 4px solid blue">
+    <ul class="breadcrumb">
+            <li>@Html.ActionLink(@GlobalRes.Resource.Category, "Category")<span class="divider">/</span></li>
+            <li class="active">@GlobalRes.Resource.Create </li>
+    </ul>
+
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <div class="form-group">
+                @GlobalRes.Resource.Id: <br />
+                @Html.EditorFor(model => model.CategoryId, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+            <div class="form-group">
+                @GlobalRes.Resource.Name: <br />
+                @Html.EditorFor(model => model.Name, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <div class="form-group">
+                @GlobalRes.Resource.ParentId: <br />
+                @Html.EditorFor(model => model.ParentId, new { @class = "input-xxlarge" })            
+            </div>
+            <p><input type="submit" class="btn" value="@GlobalRes.Resource.Create" /></p>
+        </fieldset>
+    }
+</div>
+

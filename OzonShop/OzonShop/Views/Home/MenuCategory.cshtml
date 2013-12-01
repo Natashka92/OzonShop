@@ -1,0 +1,12 @@
+﻿@model List<Shop.DataBase.Category>
+@{
+}
+
+<ul class="dropdown-menu parent">
+    <li>
+        @foreach (var item in Model)
+        {
+            @Html.ActionLink(item.Name, "FullSearch", "Search", new { categoryId = item.CategoryId }, null)
+        }       
+    </li>
+</ul>

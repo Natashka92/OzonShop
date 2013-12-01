@@ -1,0 +1,12 @@
+﻿<div class="btn-group">
+  <button class="btn">@GlobalRes.Resource.ChangeLang</button>
+  <button class="btn dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+        <li>@Html.ActionLink(@GlobalRes.Resource.English, "ChangeCulture", "Home",
+            new { lang = "en", returnUrl = this.Request.RawUrl }, null)</li>
+        <li>@Html.ActionLink(@GlobalRes.Resource.Russian, "ChangeCulture", "Home",
+            new { lang = "ru", returnUrl = this.Request.RawUrl }, null)</li>                                   
+  </ul>
+</div>

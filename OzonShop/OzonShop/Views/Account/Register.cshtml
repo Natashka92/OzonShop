@@ -1,0 +1,54 @@
+﻿@model OzonShop.Models.RegisterModel
+@{
+    ViewBag.Title = @GlobalRes.Resource.RegistrationForm;
+ }
+ <div style="border: 4px solid blue">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <legend>@GlobalRes.Resource.RegistrationForm</legend>       
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName, new { @class = "input-xlarge" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "input-xlarge", @type = "email" })  
+            @Html.ValidationMessageFor(m => m.Email, null, new { @class = "label label-warning" })             
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Login)
+            @Html.TextBoxFor(m => m.Login, new { @class = "input-xlarge" })
+        </div>
+        <div class="form-group">
+            <label>
+                @Html.CheckBoxFor(m => m.Distribution)            
+                @GlobalRes.Resource.Distribution
+            </label>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Phone)
+            @Html.TextBoxFor( m => m.Phone, new { @class = "input-xlarge"})
+           @* @Html.ValidationMessageFor( m => m.Phone, null, new { @class = "label label-warning" })*@
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "input-xlarge" })
+            @Html.ValidationMessageFor(m => m.Password, null, new { @class = "label label-warning" })  
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword)
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input-xlarge" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "label label-warning" })   
+        </div>
+        
+        <p><input type="submit" value=@GlobalRes.Resource.Register class="btn"/></p>
+    }
+    <span id="sendingProgress" style="display: none;">@GlobalRes.Resource.WaitMessagePost
+			<img src='@Href("~/Content/Images/ajax_loader_big.gif")' alt="wait"/>
+	</span>  
+</div>     
+
+
+

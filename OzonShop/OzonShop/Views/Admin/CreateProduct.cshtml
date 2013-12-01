@@ -1,0 +1,82 @@
+﻿@section header
+{
+    <link href="@Url.Content("/content/jquery.tagit.css")" rel = "Stylesheet" type="text/css" />
+    <link href="@Url.Content("/content/themes/base/jquery-ui.css")" rel = "Stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">    
+}
+
+@model Shop.DataBase.Product
+@{
+    ViewBag.Title = @GlobalRes.Resource.Create;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+     
+<script type="text/javascript">
+    $(document).ready(function () {
+        var ololo = '@(Html.Raw(Json.Encode(ViewBag.ListTag)))'
+        var str = ololo.split('","');
+        $("#taggedBox").tagit({
+            availableTags: str,
+            autocomplete: { delay: 0, minLength: 2 }
+        })
+    });
+</script>
+
+<div style="border: 4px solid blue">
+    <ul class="breadcrumb">
+            <li>@Html.ActionLink(@GlobalRes.Resource.Products, "Product")<span class="divider">/</span></li>
+            <li class="active">@GlobalRes.Resource.Create </li>
+    </ul>
+
+    @using (Html.BeginForm()) 
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <div class="form-group">
+                @GlobalRes.Resource.Id     <br />
+                @Html.EditorFor(model => model.ProductId, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.ProductId)
+            </div>
+            <div class="form-group">
+                Url <br />      
+                @Html.EditorFor(model => model.Url, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.Url)
+            </div>
+            <div class="form-group">
+                @GlobalRes.Resource.Name <br />
+                @Html.EditorFor(model => model.Name, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <div class="form-group">
+                @GlobalRes.Resource.Price <br />
+                @Html.EditorFor(model => model.Price, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.Price)
+            </div>
+            <div class="form-group">
+                @GlobalRes.Resource.Description <br />
+                @Html.TextAreaFor(model => model.Description, new { @class = "input-xxlarge", @rows = "10", @maxlength = "500" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+            <div class="form-group">
+                @GlobalRes.Resource.Barcode <br />
+                @Html.EditorFor(model => model.Barcode, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.Barcode)
+            </div>
+            <div class="form-group">
+                @GlobalRes.Resource.Discount <br />
+                @Html.EditorFor(model => model.Discount, new { @class = "input-xxlarge" })
+                @Html.ValidationMessageFor(model => model.Discount)
+            </div>
+            <div class="form-group">
+                @GlobalRes.Resource.Id @GlobalRes.Resource.Category  <br />
+                @Html.DropDownListFor(model => model.CategoryId, new SelectList(ViewBag.Category, "CategoryId", "Name"))
+                @Html.ValidationMessageFor(model => model.CategoryId)
+            </div>
+            <div class="form-group">            
+                    @GlobalRes.Resource.Tags
+                    @Html.TextBox("StringTags", null, new {@id = "taggedBox"})
+            </div>
+            <p><input type="submit" class="btn" value="@GlobalRes.Resource.Create" /></p>
+        </fieldset>
+    }    
+</div>

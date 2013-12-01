@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Shop.DataBase.Category>
+@{
+}
+
+<ul class="nav nav-list pull-left" style="border: 4px solid blue">
+@foreach (var item in Model)
+{  
+    <li class="dropdown-submenu">
+        @Html.ActionLink(@item.Name, "FullSearch", "Search", new { categoryId = item.CategoryId }, null)
+        @Html.Action("MenuCategory", "Home", new { parentId = item.CategoryId })
+    </li>        
+}
+</ul>
+
+

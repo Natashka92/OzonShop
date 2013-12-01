@@ -1,0 +1,5 @@
+﻿@using (Html.BeginForm("FullSearch", "Search"))
+{  
+    @Html.TextBox("SearchString", null, new { @class = "input-xlarge", @placeholder = @GlobalRes.Resource.EnterData }) 
+   <input type="submit" value="@GlobalRes.Resource.Search" class="btn" />
+}
