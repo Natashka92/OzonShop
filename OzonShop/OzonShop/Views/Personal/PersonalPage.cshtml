@@ -1,5 +1,70 @@
-﻿@{
+﻿@model OzonShop.Models.OrderModel
+@{
     ViewBag.Title = "PersonalPage";
 }
+<div style="border: 4px solid blue">
+    <div>
+        <ul class="nav nav-tabs">        
+            <li class="active"><a href="#">@GlobalRes.Resource.Basket</a></li>
+            <li>@Html.ActionLink(@GlobalRes.Resource.Adress, "Adress")</li>
+            <li>@Html.ActionLink(@GlobalRes.Resource.Orders, "Orders")</li>
+        </ul>
+    </div>
+    @if (Model != null)
+    {           
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>
+                    @GlobalRes.Resource.Name
+                </th>
+                <th>
+                    @GlobalRes.Resource.Price
+                </th>        
+                <th>
+                    @GlobalRes.Resource.Discount
+                </th>       
+                <th></th>
+            </tr>
 
-<h2>PersonalPage</h2>
+            @foreach (var item in Model.Basket)
+            {
+                <tr>        
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>        
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Discount)
+                    </td>        
+                    <td>
+                        @Html.ActionLink(
+                            @GlobalRes.Resource.Delete,
+                            "DeleteFromBasket",
+                            new { idProduct = item.ProductId, nameUser = User.Identity.Name },
+                            new { @class = "btn", onclick = "return confirm('Are You Sure?')" })
+                    </td>
+                </tr>
+            }
+            @if (Model.Basket != null || Model.TotalPrice <= 0.0)
+            {
+                <tr>
+                    <td style="text-align:right"><b>@GlobalRes.Resource.TotalPrice:</b></td>
+                    <td><b>@Model.TotalPrice</b></td>
+                    <td></td>
+                    <td>@Html.ActionLink(
+                            @GlobalRes.Resource.Create + " " + @GlobalRes.Resource.Order,
+                            "CreateOrder",
+                            new { totalPrice = Model.TotalPrice },
+                            new { @class = "btn btn-success" })
+                    </td>
+                </tr> 
+            }     
+        </table>
+    }
+    else
+    {
+        @GlobalRes.Resource.BasketEmpty 
+    }
+</div>

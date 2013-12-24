@@ -31,49 +31,6 @@ namespace Shop.DataBase
         [Required]
         public int CurrencyId { get; set; }
 
-        public virtual ICollection<OrderProduct> OrderProduct { get; set; }
-
-        public static List<Order> Select()
-        {
-            using (var dbContext = new DataContext())
-            {
-                return dbContext.Orders.ToList();
-            }
-        }
-
-        public static List<Order> Select(DateTime searchString)
-        {
-            using (var dbContext = new DataContext())
-            {
-                var orders = Select();
-                return orders = orders.Where(s => s.OrderData.CompareTo(searchString) >= 0).ToList();
-            }
-        }
-
-        public static void Delete(int id)
-        {
-            using (var dbContext = new DataContext())
-            {
-                Order order = dbContext.Orders.Find(id);
-                dbContext.Orders.Remove(order);
-                dbContext.SaveChanges();
-            }
-        }
-
-        public static Order Find(int id)
-        {
-            using (var dbContext = new DataContext())
-            {
-                return dbContext.Orders.Find(id);
-            }
-        }
-
-        public static List<OrderProduct> SelectOrderProduct(int orderId)
-        {
-            using (var dbContext = new DataContext())
-            {
-                return dbContext.OrderProducts.Where(s => s.OrderId == orderId).ToList();
-            }
-        }
+        public virtual ICollection<OrderProduct> OrderProduct { get; set; }        
     }
 }

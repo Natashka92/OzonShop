@@ -15,14 +15,6 @@ namespace Shop.DataBase
         public int ProductId { get; set; }
 
         [Required]
-        public int Quantity { get; set; }
-
-        public static Store Find(int productId)
-        {
-            using (var dbContext = new DataContext())
-            {
-                return dbContext.Store.Find(productId);
-            }
-        }
+        public int Quantity { get; set; }        
     }
 }

@@ -70,6 +70,15 @@ namespace GlobalRes {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string AddAdress {
+            get {
+                return ResourceManager.GetString("AddAdress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Админка.
         /// </summary>
         public static string AdminPage {
@@ -115,6 +124,24 @@ namespace GlobalRes {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Карзина.
+        /// </summary>
+        public static string Basket {
+            get {
+                return ResourceManager.GetString("Basket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Карзина пуста, выберите продукты для заказа. .
+        /// </summary>
+        public static string BasketEmpty {
+            get {
+                return ResourceManager.GetString("BasketEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Категории.
         /// </summary>
         public static string Categories {
@@ -151,11 +178,38 @@ namespace GlobalRes {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Комментировать.
+        /// </summary>
+        public static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Комментарии.
+        /// </summary>
+        public static string Comments {
+            get {
+                return ResourceManager.GetString("Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Повторите пароль.
         /// </summary>
         public static string ConfirmPassword {
             get {
                 return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Страна.
+        /// </summary>
+        public static string Country {
+            get {
+                return ResourceManager.GetString("Country", resourceCulture);
             }
         }
         
@@ -358,6 +412,15 @@ namespace GlobalRes {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на в карзину.
+        /// </summary>
+        public static string InBasket {
+            get {
+                return ResourceManager.GetString("InBasket", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Не корректное имя или пароль.
         /// </summary>
         public static string IncorrectNameOrPassword {
@@ -417,6 +480,15 @@ namespace GlobalRes {
         public static string IsStore {
             get {
                 return ResourceManager.GetString("IsStore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Оставьте свой комментарий здесь..
+        /// </summary>
+        public static string LeaveComments {
+            get {
+                return ResourceManager.GetString("LeaveComments", resourceCulture);
             }
         }
         
@@ -525,6 +597,15 @@ namespace GlobalRes {
         public static string Of {
             get {
                 return ResourceManager.GetString("Of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на заказ.
+        /// </summary>
+        public static string Order {
+            get {
+                return ResourceManager.GetString("Order", resourceCulture);
             }
         }
         
@@ -844,6 +925,24 @@ namespace GlobalRes {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Улица.
+        /// </summary>
+        public static string Street {
+            get {
+                return ResourceManager.GetString("Street", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Заказ успешно оформлен!.
+        /// </summary>
+        public static string SuccessOrder {
+            get {
+                return ResourceManager.GetString("SuccessOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Тэги:.
         /// </summary>
         public static string Tags {
@@ -867,6 +966,15 @@ namespace GlobalRes {
         public static string TotalPrice {
             get {
                 return ResourceManager.GetString("TotalPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Город.
+        /// </summary>
+        public static string Town {
+            get {
+                return ResourceManager.GetString("Town", resourceCulture);
             }
         }
         

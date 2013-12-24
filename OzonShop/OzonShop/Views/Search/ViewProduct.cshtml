@@ -1,7 +1,9 @@
 ﻿@using OzonShop.Models;
 @model Shop.DataBase.Product
-@{
-    ViewBag.Title = @GlobalRes.Resource.Details;    
+@{    
+    
+    int i = -1;
+    ViewBag.Title = @GlobalRes.Resource.Details;       
 }
 
 <link href="@Url.Content("/content/slider.css")" rel = "Stylesheet" type="text/css" /> 
@@ -21,7 +23,7 @@
         <div id="slider">		
              @foreach (var item in ViewBag.Pictures)
              {
-                 <div class="slide" style="position: absolute; top: 0px; left: 0px; display: none"><img src=@item.PictureUrl width="320" height="100" alt="image"/></div>          
+                 <div class="slide" style="position: absolute; top: 0px; left: 0px; display: none"><img src="@item.PictureUrl" width="320" height="100" alt="image"/></div>          
              }   
 		</div>
     </div>
@@ -55,14 +57,51 @@
         }
     </table>
    
-   <div class="form-group">
-        <label>               
+   <div class="navbar-form pull-left">
+                    
             <b><big>@GlobalRes.Resource.Barcode:  </big></b>
             @Html.DisplayFor(model => model.Barcode)
             <b><big>@GlobalRes.Resource.Discount:  </big></b>
             @Html.DisplayFor(model => model.Discount) % 
              <b><big>@GlobalRes.Resource.Price:  </big></b>
             @Html.DisplayFor(model => model.Price) 
-        </label>
+        
+        @if (ViewBag.IsStore)
+        {
+            <div style="text-align:right">        
+                @Html.ActionLink(@GlobalRes.Resource.Add + " " + @GlobalRes.Resource.InBasket, "AddToBasket", "Personal", new { id = Model.ProductId }, new { @class = "btn btn-success", onclick = "return alert('Товар был успешно добавлен в карзину!')" })
+            </div>
+        }
     </div>   
 </fieldset>
+<br />
+<h4>@GlobalRes.Resource.Comments:</h4>
+<table class="table table-striped  table-hover">
+    <tr>        
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (Description item in ViewBag.Comments)
+    {
+        i++;
+        <tr class="warning">            
+            <td>
+                @ViewBag.UserNames[i]
+                (@item.Data.Day.@item.Data.Month.@item.Data.Year)
+               
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TextDescription)
+            </td>                
+        </tr>            
+    }
+</table>
+<div>
+     @using (Html.BeginForm("CreateComment", "Home", new {productId = Model.ProductId}, FormMethod.Post, new { role = "form" }))
+     {
+         @Html.TextArea("comments", "", new {  @class = "input-xxlarge", rows = 5, placeholder = @GlobalRes.Resource.LeaveComments }) 
+         <br />
+         <input type="submit" value="@GlobalRes.Resource.Comment" class="btn"/>
+     }
+ </div>
+

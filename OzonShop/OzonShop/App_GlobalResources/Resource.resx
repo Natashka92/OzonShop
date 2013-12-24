@@ -405,4 +405,40 @@
   <data name="Add" xml:space="preserve">
     <value>Добавить</value>
   </data>
+  <data name="Basket" xml:space="preserve">
+    <value>Карзина</value>
+  </data>
+  <data name="InBasket" xml:space="preserve">
+    <value>в карзину</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Страна</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Улица</value>
+  </data>
+  <data name="Town" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>заказ</value>
+  </data>
+  <data name="SuccessOrder" xml:space="preserve">
+    <value>Заказ успешно оформлен!</value>
+  </data>
+  <data name="AddAdress" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BasketEmpty" xml:space="preserve">
+    <value>Карзина пуста, выберите продукты для заказа. </value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментировать</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="LeaveComments" xml:space="preserve">
+    <value>Оставьте свой комментарий здесь.</value>
+  </data>
 </root>

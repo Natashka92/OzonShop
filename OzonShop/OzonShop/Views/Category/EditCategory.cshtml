@@ -1,0 +1,28 @@
+﻿@model Shop.DataBase.Category
+@{
+    ViewBag.Title = @GlobalRes.Resource.Edit;
+}
+<div style="border: 4px solid blue">
+    <ul class="breadcrumb">
+            <li>@Html.ActionLink(@GlobalRes.Resource.Category, "Category","Category", null, null)<span class="divider">/</span></li>
+            <li class="active">@GlobalRes.Resource.Edit </li>
+    </ul>
+
+    @using (Html.BeginForm(new { @class = "form-horizontal" }))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            @Html.HiddenFor(model => model.CategoryId)
+
+            <div class="form-group">
+                @GlobalRes.Resource.Name
+                @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <p>
+                <input type="submit" class="btn" value=@GlobalRes.Resource.Edit />
+            </p>
+        </fieldset>
+    }
+</div>
+

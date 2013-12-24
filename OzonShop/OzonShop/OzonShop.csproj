@@ -51,6 +51,15 @@
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\packages\Mvc4Futures.4.0.20710.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common">
+      <HintPath>..\packages\Ninject.Web.Common.3.0.0.7\lib\net40-full\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC3.3.0.0.6\lib\net40-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -122,6 +131,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
     <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.20710.0\lib\net40\WebMatrix.Data.dll</HintPath>
@@ -179,10 +191,12 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BindingsModule.cs" />
     <Compile Include="App_Start\BootstrapBundleConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\ExampleLayoutsRouteConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="BootstrapSupport\ControlGroupExtensions.cs" />
@@ -190,9 +204,29 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BootstrapBaseController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DataAccess\AdressRepository.cs" />
+    <Compile Include="DataAccess\BasketRepository.cs" />
+    <Compile Include="DataAccess\CategoryRepository.cs" />
+    <Compile Include="DataAccess\CurrencyRepository.cs" />
+    <Compile Include="DataAccess\DescriptionRepository.cs" />
+    <Compile Include="DataAccess\IRepositoryCategory.cs" />
+    <Compile Include="DataAccess\IRepositoryOrder.cs" />
+    <Compile Include="DataAccess\IRepositoryProduct.cs" />
+    <Compile Include="DataAccess\IRepositoryUser.cs" />
+    <Compile Include="DataAccess\OrderRepository.cs" />
+    <Compile Include="DataAccess\ParametersRepository.cs" />
+    <Compile Include="DataAccess\PictureRepository.cs" />
+    <Compile Include="DataAccess\ProductRepository.cs" />
+    <Compile Include="DataAccess\StoreRepository.cs" />
+    <Compile Include="DataAccess\TagRepository.cs" />
+    <Compile Include="DataAccess\UserRepository.cs" />
+    <Compile Include="DataAccess\VendorRepository.cs" />
     <Compile Include="Filters\CultureAttribute.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -201,6 +235,8 @@
     <Compile Include="Helpers\SendToEmail.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\BasketModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\ParametersModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\SearchCriteria.cs" />
@@ -382,16 +418,12 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Shared\_CulturePartial.cshtml" />
-    <Content Include="Views\Personal\PersonalPage.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Admin\Product.cshtml" />
-    <Content Include="Views\Admin\Category.cshtml" />
-    <Content Include="Views\Admin\Order.cshtml" />
-    <Content Include="Views\Admin\ViewUser.cshtml" />
-    <Content Include="Views\Admin\DetailsUser.cshtml" />
-    <Content Include="Views\Admin\DetailsOrder.cshtml" />
-    <Content Include="Views\Admin\EditCategory.cshtml" />
-    <Content Include="Views\Admin\CreateCategory.cshtml" />
+    <Content Include="Views\User\DetailsUser.cshtml" />
+    <Content Include="Views\Order\DetailsOrder.cshtml" />
+    <Content Include="Views\Category\EditCategory.cshtml" />
+    <Content Include="Views\Category\CreateCategory.cshtml" />
     <Content Include="Views\Admin\DetailsProduct.cshtml" />
     <Content Include="Views\Admin\EditProduct.cshtml" />
     <Content Include="Views\Home\MenuCategory.cshtml" />
@@ -427,6 +459,16 @@
     <None Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Views\Admin\CreatePicture.cshtml" />
     <Content Include="Views\Admin\CreateParameter.cshtml" />
+    <Content Include="Views\User\ViewUser.cshtml" />
+    <Content Include="Views\Category\Category.cshtml" />
+    <Content Include="Views\Order\Order.cshtml" />
+    <Content Include="Views\Personal\Adress.cshtml" />
+    <Content Include="Views\Personal\CreateAdress.cshtml" />
+    <Content Include="Views\Personal\EditAdress.cshtml" />
+    <Content Include="Views\Personal\PersonalPage.cshtml" />
+    <Content Include="Views\Personal\CreateOrder.cshtml" />
+    <Content Include="Views\Personal\message.cshtml" />
+    <Content Include="Views\Personal\Orders.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -444,7 +486,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58819</DevelopmentServerPort>
+          <DevelopmentServerPort>61761</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

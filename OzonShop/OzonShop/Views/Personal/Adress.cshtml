@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Shop.DataBase.Adress>
+@{
+    ViewBag.Title = @GlobalRes.Resource.Adress;
+}
+
+<div style="border: 4px solid blue">
+    <div>
+        <ul class="nav nav-tabs"> 
+            <li>@Html.ActionLink(@GlobalRes.Resource.Basket, "PersonalPage")</li>  
+            <li class="active"><a href="#">@GlobalRes.Resource.Adress</a></li>
+            <li>@Html.ActionLink(@GlobalRes.Resource.Orders, "Orders")</li>
+        </ul>
+    </div>       
+    <div class="btn btn-success">@Html.ActionLink(@GlobalRes.Resource.CreateNew + " " + @GlobalRes.Resource.Adress, "CreateAdress")</div>
+        
+    
+    <table class="table table-striped table-hover">
+    @foreach (var item in Model) {
+        <tr>        
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+                @Html.DisplayFor(modelItem => item.Town)
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.ActionLink(@GlobalRes.Resource.Edit, "EditAdress", new { id=item.AdressId }, new { @class="btn" })
+                @Html.ActionLink(@GlobalRes.Resource.Delete, "DeleteAdress", new { id=item.AdressId }, new { @class = "btn", onclick = "return confirm('Are You Sure?')" })
+            </td>
+        </tr>
+    }
+    </table>
+</div>

@@ -43,41 +43,6 @@ namespace Shop.DataBase
         public virtual ICollection<Adress> Adress { get; set; }
         public virtual ICollection<Order> Order { get; set; }
         public virtual ICollection<Description> Descriptions { get; set; }
-        public virtual ICollection<Basket> Baskets { get; set; }
-
-        public static List<User> Select()
-        {
-            using (var dbContext = new DataContext())
-            {
-                return dbContext.Users.ToList();
-            }
-        }
-
-        public static List<User> Select(String searchString)
-        {
-            using (var dbContext = new DataContext())
-            {
-                var users = Select();
-                return users = users.Where(s => s.Login.Contains(searchString)).ToList();
-            }
-        }
-
-        public static void Delete(int id)
-        {
-            using (var dbContext = new DataContext())
-            {
-                User user = dbContext.Users.Find(id);
-                dbContext.Users.Remove(user);
-                dbContext.SaveChanges();
-            }
-        }
-
-        public static User Find(int id)
-        {
-            using (var dbContext = new DataContext())
-            {
-                return dbContext.Users.Find(id);
-            }
-        }
+        public virtual ICollection<Basket> Baskets { get; set; }        
     }
 }

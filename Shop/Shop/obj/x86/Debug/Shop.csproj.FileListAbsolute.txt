@@ -22,3 +22,8 @@ D:\epam\промежутки\Shop\Shop\obj\x86\Debug\Shop.pdb
 D:\epam\промежутки\Shop\Shop\bin\Debug\Shop.dll.config
 D:\epam\промежутки\Shop\Shop\bin\Debug\Shop.dll
 D:\epam\промежутки\Shop\Shop\obj\x86\Debug\Shop.dll
+D:\epam\промежутки\Shop\Shop\obj\x86\Debug\Shop.Migrations.InitialCreate.resources
+D:\epam\промежутки\Shop\Shop\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\epam\промежутки\Shop\Shop\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\epam\промежутки\Shop\Shop\obj\x86\Debug\Shop.Migrations.AddUserId.resources
+D:\epam\промежутки\Shop\Shop\obj\x86\Debug\Shop.Migrations.AddUser.resources

@@ -1,0 +1,52 @@
+﻿@model Shop.DataBase.Order
+@{
+    ViewBag.Title = @GlobalRes.Resource.Create + " " + @GlobalRes.Resource.Order;
+}
+<div style="border: 4px solid blue">
+    <ul class="breadcrumb">
+            <li>@Html.ActionLink(@GlobalRes.Resource.Basket, "PersonalPage")<span class="divider">/</span></li>
+            <li class="active">@GlobalRes.Resource.Create @GlobalRes.Resource.Order </li>
+    </ul>
+
+    @using (Html.BeginForm()) 
+    {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            @Html.HiddenFor(model => model.OrderId)
+            @Html.HiddenFor(model => model.OrderData)
+            @Html.HiddenFor( model => model.TotalPrice)
+            @Html.HiddenFor(model => model.UserId)
+              
+           
+            <div class="editor-label">
+                <b>@GlobalRes.Resource.Adress </b>    
+                @if (Model.AdressId == -1)
+                {
+                    <div class="btn btn-success">@Html.ActionLink(@GlobalRes.Resource.CreateNew + " " + @GlobalRes.Resource.Adress, "CreateAdress")</div>
+                }
+                else
+                {      
+                    @Html.DropDownListFor(model => model.AdressId, new SelectList(ViewBag.Adresses, "AdressId", "Street", String.Empty))
+                    @Html.ValidationMessageFor(model => model.AdressId)
+                }
+            </div>  
+            
+
+            <div class="editor-label">
+                <b>@GlobalRes.Resource.TotalPrice:</b>      
+                @Html.DisplayFor(model => model.TotalPrice)
+                @Html.ValidationMessageFor(model => model.TotalPrice)
+            </div>
+
+            <div class="editor-label">
+                <b>@GlobalRes.Resource.Currency  </b>    
+                @Html.DropDownListFor(model => model.CurrencyId, new SelectList(ViewBag.Currency, "CurrencyId", "Name", String.Empty))
+                @Html.ValidationMessageFor(model => model.CurrencyId)
+            </div>
+
+            <p><input type="submit" class="btn btn-success" value="@GlobalRes.Resource.Create" /></p>
+        </fieldset>
+    }
+
+</div>

@@ -77,12 +77,35 @@
     <Compile Include="DataMover.cs" />
     <Compile Include="DataReader.cs" />
     <Compile Include="HelperDB\HelpTableTag.cs" />
+    <Compile Include="Migrations\201311301650172_InitialCreate.cs" />
+    <Compile Include="Migrations\201311301650172_InitialCreate.Designer.cs">
+      <DependentUpon>201311301650172_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312242030208_AddUserId.cs" />
+    <Compile Include="Migrations\201312242030208_AddUserId.Designer.cs">
+      <DependentUpon>201312242030208_AddUserId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312242039434_AddUser.cs" />
+    <Compile Include="Migrations\201312242039434_AddUser.Designer.cs">
+      <DependentUpon>201312242039434_AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\BaseDBTest.cs" />
     <Compile Include="XmlElmentExtentions.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201311301650172_InitialCreate.resx">
+      <DependentUpon>201311301650172_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312242030208_AddUserId.resx">
+      <DependentUpon>201312242030208_AddUserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312242039434_AddUser.resx">
+      <DependentUpon>201312242039434_AddUser.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>

@@ -7,6 +7,7 @@ using AutoMapper;
 using OzonShop.Models;
 using Shop.DataBase;
 using OzonShop.Filters;
+using OzonShop.DataAccess;
 
 namespace OzonShop.Controllers
 {
@@ -15,31 +16,35 @@ namespace OzonShop.Controllers
     { 
         public ActionResult ViewProduct(int productId)
         {
-            var product = Product.Find(productId);
-            List<Parameter> param = Parameter.Select(productId);
+            var product = new ProductRepository().Find(productId);
+            List<Parameter> param = ParametersRepository.Select(productId);
             List<ParametersModel> paramModel = new List<ParametersModel>();
             foreach (var item in param)
             {
                 ParametersModel model = new ParametersModel();
                 model.NameId = item.ParamNameId;
                 model.ValueId = item.ParamValueId;
-                model.Name = Parameter.FindName(item.ParamNameId);
-                model.Value = Parameter.FindValue(item.ParamValueId);
+                model.Name = ParametersRepository.FindName(item.ParamNameId);
+                model.Value = ParametersRepository.FindValue(item.ParamValueId);
                 paramModel.Add(model);
             }
 
             ViewBag.Param = paramModel;
-            List<Picture> picture = Picture.Select(productId);
+            List<Picture> picture = PictureRepository.Select(productId);
             ViewBag.Pictures = picture;
-            ViewBag.Category = Category.Find(product.CategoryId).Name;
-            ViewBag.Tags = Tag.GetStringTag(productId);
+            ViewBag.Category = new CategoryRepository().Find(product.CategoryId).Name;
+            ViewBag.Tags = TagRepository.GetStringTag(productId);
+            ViewBag.IsStore = StoreRepository.Find(productId).Quantity > 0 ? true : false;
+            var comments = new ProductRepository().SelectCommets(productId);
+            ViewBag.UserNames = new UserRepository().SelectNamesByDescription(comments);
+            ViewBag.Comments = comments;
             return View(product);
         }
 
         public ActionResult FullSearch(String SearchString, int idTag = 0, int categoryId = 0)
         {   
             var productModel = new List<ProductModel>();
-            var products = Product.Select(SearchString, idTag, categoryId).ToList();
+            var products = new ProductRepository().Select(SearchString, idTag, categoryId).ToList();
 
             int first = 0;
             int second = 6;
@@ -50,8 +55,8 @@ namespace OzonShop.Controllers
                 {
                     ProductId = products[i].ProductId,
                     Name = products[i].Name,
-                    Picture = Picture.Find(products[i].ProductId).PictureUrl,
-                    IsStore = Store.Find(products[i].ProductId).Quantity > 0 ? true : false,
+                    Picture = PictureRepository.Find(products[i].ProductId).PictureUrl,
+                    IsStore = StoreRepository.Find(products[i].ProductId).Quantity > 0 ? true : false,
                     Price = products[i].Price,
                 });
             }
@@ -67,14 +72,14 @@ namespace OzonShop.Controllers
                 SearchResult = productModel,
                 idCategory = categoryId,
                 idTag = idTag
-            };
+            };           
             return View(result);
         }
 
         public ActionResult Search(SearchCriteria criteria)
         {
             var productModel = new List<ProductModel>();
-            var products = Product.Select(criteria.SearchKeyword, criteria.idTag, criteria.idCategory).ToList();
+            var products = new ProductRepository().Select(criteria.SearchKeyword, criteria.idTag, criteria.idCategory).ToList();
             
             switch (criteria.GetSortByField())
             {
@@ -96,8 +101,8 @@ namespace OzonShop.Controllers
                 {
                     ProductId = products[i].ProductId,
                     Name = products[i].Name,
-                    Picture = Picture.Find(products[i].ProductId).PictureUrl,
-                    IsStore = Store.Find(products[i].ProductId).Quantity > 0 ? true : false,
+                    Picture = PictureRepository.Find(products[i].ProductId).PictureUrl,
+                    IsStore = StoreRepository.Find(products[i].ProductId).Quantity > 0 ? true : false,
                     Price = products[i].Price,
                 });
             }

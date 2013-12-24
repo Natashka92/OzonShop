@@ -18,14 +18,6 @@ namespace Shop.DataBase
         [Required]
         public string Name { get; set; }
         [Required]
-        public double Rate { get; set; }
-
-        public static Currency Find(int id)
-        {
-            using (var dbContext = new DataContext())
-            {
-                return dbContext.Currencies.Find(id);
-            }
-        }
+        public double Rate { get; set; }        
     }
 }

@@ -26,6 +26,9 @@ namespace Shop.DataBase
         [Required]
         public DateTime Data { get; set; }
 
+        [Required]
+        public int UserId { get; set; }
+
         public virtual ICollection<Product> Products { get; set; }
     }
 }

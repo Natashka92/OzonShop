@@ -29,21 +29,5 @@ namespace Shop.DataBase
         [Required]
         [MaxLength(15)]
         public String Street { get; set; }
-
-        public static List<Adress> Select(int userId)
-        {
-            using (var dbContext = new DataContext())
-            {
-                return dbContext.Adresses.Where(s => s.UserId == userId).ToList();
-            }
-        }
-
-        public static Adress Find(int id)
-        {
-            using (var dbContext = new DataContext())
-            {
-                return dbContext.Adresses.Find(id);
-            }
-        }
     }
 }

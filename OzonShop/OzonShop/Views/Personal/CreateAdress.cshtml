@@ -1,0 +1,34 @@
+﻿@model Shop.DataBase.Adress
+@{
+    ViewBag.Title = @GlobalRes.Resource.Create;
+}
+
+<div style="border: 4px solid blue">
+    <ul class="breadcrumb">
+            <li>@Html.ActionLink(@GlobalRes.Resource.Adress, "Adress")<span class="divider">/</span></li>
+            <li class="active">@GlobalRes.Resource.Create </li>
+    </ul>
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <div class="form-group">
+                @GlobalRes.Resource.Country
+                @Html.EditorFor(model => model.Country)
+                @Html.ValidationMessageFor(model => model.Country)
+            </div>
+            <div class="form-group">
+                @GlobalRes.Resource.Town
+                @Html.EditorFor(model => model.Town)
+                @Html.ValidationMessageFor(model => model.Town)
+            </div>
+            <div class="form-group">
+                @GlobalRes.Resource.Street
+                @Html.EditorFor(model => model.Street)
+                @Html.ValidationMessageFor(model => model.Street)
+            </div>
+            <p><input type="submit" class="btn" value="@GlobalRes.Resource.Create" /></p>
+        </fieldset>
+    }
+</div>
+
+

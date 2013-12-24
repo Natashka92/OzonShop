@@ -15,14 +15,6 @@ namespace Shop.DataBase
         public int VendorId { get; set; }
 
         public String VendorCode { get; set; }
-        public virtual VendorName VendorName { get; set; }
-
-        public static Vendor Find(int id)
-        {
-            using (var dbContext = new DataContext())
-            {
-                return dbContext.Vendors.Find(id);
-            }
-        }
+        public virtual VendorName VendorName { get; set; }        
     }
 }

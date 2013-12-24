@@ -82,10 +82,10 @@ namespace OzonShop.Controllers
                 try
                 {
                     String token = WebSecurity.CreateUserAndAccount(model.Login, model.Password,
-                        new { UserName = model.UserName, Email = model.Email, Distribution = model.Distribution, Phone = model.Phone }, false);
-                    //new SendToEMail().SendSuccessRegistration(token, model.Email);
-                    WebSecurity.Login(model.Login, model.Password);
-                    Roles.AddUserToRole(model.Login, "admin");                  
+                        new { UserName = model.UserName, Email = model.Email, Distribution = model.Distribution, Phone = model.Phone }, true);
+                    new SendToEMail().SendSuccessRegistration(token, model.Email);
+                    //WebSecurity.Login(model.Login, model.Password);
+                    //Roles.AddUserToRole(model.Login, "admin");                  
                     SetMessage(GlobalRes.Resource.PostMail, GlobalRes.Resource.PostMail, GlobalRes.Resource.PostOnMailConfirmingOfRegistration);
                     return View("message");
                 }
